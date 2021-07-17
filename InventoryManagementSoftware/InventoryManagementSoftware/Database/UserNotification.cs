@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+
+#nullable disable
+
+namespace InventoryManagementSoftware.Database
+{
+    public partial class UserNotification
+    {
+        public int Id { get; set; }
+        public bool IsRead { get; set; }
+        public int NotificationId { get; set; }
+        public int IdentityUserId { get; set; }
+
+        public virtual AspNetUser IdentityUser { get; set; }
+        public virtual Notification Notification { get; set; }
+    }
+}
