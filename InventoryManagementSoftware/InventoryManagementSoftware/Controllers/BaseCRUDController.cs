@@ -7,40 +7,27 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSoftware.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class BaseCRUDController<T, TDb, TInsert, TUpdate, TSearch> : ControllerBase where T : class where TDb : class where TInsert : class
+    public class BaseCRUDController<T, TDb, TInsert, TUpdate, TSearch> : BaseReadController<T, TSearch> 
+        where T : class where TDb : class where TInsert : class
         where TUpdate : class where TSearch : class
     {
-        private readonly ICRUDService<T, TDb, TInsert, TUpdate, TSearch> _service;
+        protected readonly ICRUDService<T, TInsert, TUpdate, TSearch> _crudService;
 
-        public BaseCRUDController(ICRUDService<T, TDb, TInsert, TUpdate, TSearch> service)
+        public BaseCRUDController(ICRUDService<T, TInsert, TUpdate, TSearch> service) : base(service)
         {
-            _service = service;
-        }
-
-        [HttpGet]
-        public IEnumerable<T> Get([FromQuery]TSearch search = null)
-        {
-            return _service.Get(search);
-        }
-
-        [HttpGet("{id}")]
-        public T GetById(int id)
-        {
-            return _service.GetById(id);
+            _crudService = service;
         }
 
         [HttpPost]
         public T Insert([FromQuery]TInsert request)
         {
-            return _service.Insert(request);
+            return _crudService.Insert(request);
         }
 
         [HttpPut("{id}")]
         public T Update(int id, TUpdate request)
         {
-            return _service.Update(id, request);
+            return _crudService.Update(id, request);
         }
     }
 }

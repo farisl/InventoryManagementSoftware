@@ -1,12 +1,14 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 #nullable disable
 
 namespace InventoryManagementSoftware.Database
 {
-    public partial class IMSContext : DbContext
+    public partial class IMSContext : IdentityDbContext<IdentityUser<int>, IdentityRole<int>,int>
     {
         public IMSContext()
         {
@@ -18,13 +20,6 @@ namespace InventoryManagementSoftware.Database
         }
 
         public virtual DbSet<Address> Addresses { get; set; }
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
-        public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; }
         public virtual DbSet<Attribute> Attributes { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<CategoriesBrand> CategoriesBrands { get; set; }
@@ -43,7 +38,6 @@ namespace InventoryManagementSoftware.Database
         public virtual DbSet<ImportDetail> ImportDetails { get; set; }
         public virtual DbSet<Inventory> Inventories { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
-        public virtual DbSet<Person> Persons { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductAttribute> ProductAttributes { get; set; }
         public virtual DbSet<ProductPrice> ProductPrices { get; set; }
@@ -63,6 +57,8 @@ namespace InventoryManagementSoftware.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.HasAnnotation("Relational:Collation", "Bosnian_Latin_100_BIN");
 
             modelBuilder.Entity<Address>(entity =>
@@ -72,87 +68,6 @@ namespace InventoryManagementSoftware.Database
                 entity.HasOne(d => d.City)
                     .WithMany(p => p.Addresses)
                     .HasForeignKey(d => d.CityId);
-            });
-
-            modelBuilder.Entity<AspNetRole>(entity =>
-            {
-                entity.HasIndex(e => e.NormalizedName, "RoleNameIndex")
-                    .IsUnique()
-                    .HasFilter("([NormalizedName] IS NOT NULL)");
-
-                entity.Property(e => e.Name).HasMaxLength(256);
-
-                entity.Property(e => e.NormalizedName).HasMaxLength(256);
-            });
-
-            modelBuilder.Entity<AspNetRoleClaim>(entity =>
-            {
-                entity.HasIndex(e => e.RoleId, "IX_AspNetRoleClaims_RoleId");
-
-                entity.HasOne(d => d.Role)
-                    .WithMany(p => p.AspNetRoleClaims)
-                    .HasForeignKey(d => d.RoleId);
-            });
-
-            modelBuilder.Entity<AspNetUser>(entity =>
-            {
-                entity.HasIndex(e => e.NormalizedEmail, "EmailIndex");
-
-                entity.HasIndex(e => e.NormalizedUserName, "UserNameIndex")
-                    .IsUnique()
-                    .HasFilter("([NormalizedUserName] IS NOT NULL)");
-
-                entity.Property(e => e.Email).HasMaxLength(256);
-
-                entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
-
-                entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
-
-                entity.Property(e => e.UserName).HasMaxLength(256);
-            });
-
-            modelBuilder.Entity<AspNetUserClaim>(entity =>
-            {
-                entity.HasIndex(e => e.UserId, "IX_AspNetUserClaims_UserId");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.AspNetUserClaims)
-                    .HasForeignKey(d => d.UserId);
-            });
-
-            modelBuilder.Entity<AspNetUserLogin>(entity =>
-            {
-                entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
-
-                entity.HasIndex(e => e.UserId, "IX_AspNetUserLogins_UserId");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.AspNetUserLogins)
-                    .HasForeignKey(d => d.UserId);
-            });
-
-            modelBuilder.Entity<AspNetUserRole>(entity =>
-            {
-                entity.HasKey(e => new { e.UserId, e.RoleId });
-
-                entity.HasIndex(e => e.RoleId, "IX_AspNetUserRoles_RoleId");
-
-                entity.HasOne(d => d.Role)
-                    .WithMany(p => p.AspNetUserRoles)
-                    .HasForeignKey(d => d.RoleId);
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.AspNetUserRoles)
-                    .HasForeignKey(d => d.UserId);
-            });
-
-            modelBuilder.Entity<AspNetUserToken>(entity =>
-            {
-                entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.AspNetUserTokens)
-                    .HasForeignKey(d => d.UserId);
             });
 
             modelBuilder.Entity<CategoriesBrand>(entity =>
@@ -217,9 +132,9 @@ namespace InventoryManagementSoftware.Database
                     .WithMany(p => p.Employees)
                     .HasForeignKey(d => d.GenderId);
 
-                entity.HasOne(d => d.IdentityUser)
-                    .WithMany(p => p.Employees)
-                    .HasForeignKey(d => d.IdentityUserId);
+                //entity.HasOne(d => d.IdentityUser)
+                //    .WithMany(p => p.Employees)
+                //    .HasForeignKey(d => d.IdentityUserId);
             });
 
             modelBuilder.Entity<EmployeeInventory>(entity =>
@@ -329,27 +244,13 @@ namespace InventoryManagementSoftware.Database
                     .HasForeignKey(d => d.AddressId);
             });
 
-            modelBuilder.Entity<Notification>(entity =>
-            {
-                entity.HasOne(d => d.IdentityUser)
-                    .WithMany(p => p.Notifications)
-                    .HasForeignKey(d => d.IdentityUserId);
-            });
+            //modelBuilder.Entity<Notification>(entity =>
+            //{
+            //    entity.HasOne(d => d.IdentityUser)
+            //        .WithMany(p => p.Notifications)
+            //        .HasForeignKey(d => d.IdentityUserId);
+            //});
 
-            modelBuilder.Entity<Person>(entity =>
-            {
-                entity.HasIndex(e => e.GenderId, "IX_Persons_GenderId");
-
-                entity.HasIndex(e => e.IdentityUserId, "IX_Persons_IdentityUserId");
-
-                entity.HasOne(d => d.Gender)
-                    .WithMany(p => p.People)
-                    .HasForeignKey(d => d.GenderId);
-
-                entity.HasOne(d => d.IdentityUser)
-                    .WithMany(p => p.People)
-                    .HasForeignKey(d => d.IdentityUserId);
-            });
 
             modelBuilder.Entity<Product>(entity =>
             {
@@ -421,19 +322,19 @@ namespace InventoryManagementSoftware.Database
                     .HasForeignKey(d => d.AddressId);
             });
 
-            modelBuilder.Entity<UserNotification>(entity =>
-            {
-                entity.HasIndex(e => e.NotificationId, "IX_UserNotifications_NotificationId");
+            //modelBuilder.Entity<UserNotification>(entity =>
+            //{
+            //    entity.HasIndex(e => e.NotificationId, "IX_UserNotifications_NotificationId");
 
-                entity.HasOne(d => d.IdentityUser)
-                    .WithMany(p => p.UserNotifications)
-                    .HasForeignKey(d => d.IdentityUserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
+            //    entity.HasOne(d => d.IdentityUser)
+            //        .WithMany(p => p.UserNotifications)
+            //        .HasForeignKey(d => d.IdentityUserId)
+            //        .OnDelete(DeleteBehavior.ClientSetNull);
 
-                entity.HasOne(d => d.Notification)
-                    .WithMany(p => p.UserNotifications)
-                    .HasForeignKey(d => d.NotificationId);
-            });
+            //    entity.HasOne(d => d.Notification)
+            //        .WithMany(p => p.UserNotifications)
+            //        .HasForeignKey(d => d.NotificationId);
+            //});
 
             OnModelCreatingPartial(modelBuilder);
         }

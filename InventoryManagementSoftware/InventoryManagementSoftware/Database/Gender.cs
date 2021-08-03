@@ -10,13 +10,11 @@ namespace InventoryManagementSoftware.Database
         public Gender()
         {
             Employees = new HashSet<Employee>();
-            People = new HashSet<Person>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
 
         public virtual ICollection<Employee> Employees { get; set; }
-        public virtual ICollection<Person> People { get; set; }
     }
 }

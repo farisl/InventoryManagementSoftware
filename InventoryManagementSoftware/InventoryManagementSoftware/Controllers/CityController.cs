@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSoftware.Controllers
 {
-    public class CityController : BaseCRUDController<Model.City, Database.City, CityUpsertRequest, CityUpsertRequest, CityUpsertRequest>
+    public class CityController : BaseCRUDController<Model.City, Database.City, CityUpsertRequest, CityUpsertRequest, CitySearchObject>
     {
 
         public CityController(ICityService service) : base(service)

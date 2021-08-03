@@ -1,0 +1,29 @@
+﻿using AutoMapper;
+using InventoryManagementSoftware.Database;
+using InventoryManagementSoftware.Model.Requests;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace InventoryManagementSoftware.Services
+{
+    public class CategoryService : BaseCRUDService<Model.Category, Database.Category, BaseUpsertRequest, BaseUpsertRequest, BaseUpsertRequest>
+        , ICategoryService
+    {
+        public CategoryService(IMSContext context, IMapper mapper) : base(context, mapper)
+        {
+        }
+
+        public override IEnumerable<Model.Category> Get(BaseUpsertRequest search)
+        {
+            var list = _context.Categories.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(search?.Name))
+                list = list.Where(x => x.Name.StartsWith(search.Name));
+
+            return _mapper.Map<List<Model.Category>>(list.ToList());
+        }
+
+    }
+}

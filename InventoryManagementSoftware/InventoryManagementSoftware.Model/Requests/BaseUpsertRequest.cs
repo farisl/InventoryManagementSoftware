@@ -4,7 +4,8 @@ using System.Text;
 
 namespace InventoryManagementSoftware.Model.Requests
 {
-    class CitySearchObject
+    public class BaseUpsertRequest
     {
+        public string Name { get; set; }
     }
 }

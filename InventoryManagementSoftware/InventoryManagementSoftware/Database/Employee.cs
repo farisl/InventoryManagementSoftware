@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 
 #nullable disable
@@ -28,11 +29,11 @@ namespace InventoryManagementSoftware.Database
         public bool IsDeleted { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
-        public int IdentityUserId { get; set; }
+        public int UserId { get; set; }
 
         public virtual Address Address { get; set; }
         public virtual Gender Gender { get; set; }
-        public virtual AspNetUser IdentityUser { get; set; }
+        public virtual IdentityUser<int> User { get; set; }
         public virtual ICollection<EmployeeInventory> EmployeeInventories { get; set; }
         public virtual ICollection<EmployeeSalary> EmployeeSalaries { get; set; }
         public virtual ICollection<Export> Exports { get; set; }

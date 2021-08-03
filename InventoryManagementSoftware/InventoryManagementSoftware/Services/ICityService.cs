@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSoftware.Services
 {
-    public interface ICityService : ICRUDService<Model.City, Database.City, CityUpsertRequest, CityUpsertRequest, CityUpsertRequest>
+    public interface ICityService : ICRUDService<Model.City, CityUpsertRequest, CityUpsertRequest, CitySearchObject>
     {
 
     }

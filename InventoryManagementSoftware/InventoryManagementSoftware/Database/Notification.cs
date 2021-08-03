@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 
 #nullable disable
@@ -15,9 +16,9 @@ namespace InventoryManagementSoftware.Database
         public int Id { get; set; }
         public string Text { get; set; }
         public DateTime DateTime { get; set; }
-        public int IdentityUserId { get; set; }
+        public int UserId { get; set; }
 
-        public virtual AspNetUser IdentityUser { get; set; }
+        public virtual IdentityUser<int> User { get; set; }
         public virtual ICollection<UserNotification> UserNotifications { get; set; }
     }
 }

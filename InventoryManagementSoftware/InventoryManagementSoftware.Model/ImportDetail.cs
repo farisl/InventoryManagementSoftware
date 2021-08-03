@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace InventoryManagementSoftware.Model
+{
+    public class ImportDetail
+    {
+        public int Id { get; set; }
+        public int ImportId { get; set; }
+        public int ProductId { get; set; }
+        public double Quantity { get; set; }
+        public double Discount { get; set; }
+        public double Price { get; set; }
+    }
+}

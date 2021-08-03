@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSoftware.Services
 {
-    public class CityService : BaseCRUDService<Model.City, Database.City, CityUpsertRequest, CityUpsertRequest, CityUpsertRequest>, ICityService
+    public class CityService : BaseCRUDService<Model.City, Database.City, CityUpsertRequest, CityUpsertRequest, CitySearchObject>, ICityService
     {
         public CityService(IMSContext context, IMapper mapper) : base(context, mapper)
         {
         }
 
-        public override IEnumerable<Model.City> Get(CityUpsertRequest search = null)
+        public override IEnumerable<Model.City> Get(CitySearchObject search = null)
         {
             var list = _context.Cities.AsQueryable();
 
