@@ -29,6 +29,8 @@ namespace InventoryManagementSoftware.Model.Requests
         public DateTime? HireDate { get; set; } = null;
         [Range(0, 10000)]
         public double? Salary { get; set; }
-
+        public int GenderId { get; set; }
+        public DateTime BirthDate { get; set; }
+        public string Jmbg { get; set; }
     }
 }

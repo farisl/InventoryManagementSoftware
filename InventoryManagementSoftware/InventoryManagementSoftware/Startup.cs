@@ -127,6 +127,9 @@ namespace InventoryManagementSoftware
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IImportService, ImportService>();
             services.AddScoped<IShelfService, ShelfService>();
+            services.AddScoped<IProductShelfService, ProductShelfService>();
+            services.AddScoped<IGenderService, GenderService>();
+            services.AddScoped<IProductAttributeService, ProductAttributeService>();
             services.AddScoped<IAuthManagementService, AuthManagementService>();
 
         }

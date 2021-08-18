@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSoftware.Services
 {
-    public interface ICategoryService : ICRUDService<Model.Category, BaseUpsertRequest, BaseUpsertRequest, BaseUpsertRequest>
+    public interface ICategoryService : ICRUDService<Model.Category, BaseUpsertRequest, BaseUpsertRequest, string>
     {
     }
 }

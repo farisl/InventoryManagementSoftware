@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSoftware.Services
 {
-    public class BrandService : BaseCRUDService<Model.Brand, Database.Brand, BrandUpsertRequest, BrandUpsertRequest, BrandUpsertRequest>
+    public class BrandService : BaseCRUDService<Model.Brand, Database.Brand, BrandUpsertRequest, BrandUpsertRequest, BrandSearchObject>
         , IBrandService
     {
         public BrandService(IMSContext context, IMapper mapper) : base(context, mapper)
         {
         }
 
-        public override IEnumerable<Model.Brand> Get(BrandUpsertRequest search)
+        public override IEnumerable<Model.Brand> Get(BrandSearchObject search)
         {
             var list = _context.Brands.AsQueryable();
 
@@ -35,7 +35,15 @@ namespace InventoryManagementSoftware.Services
             if (search?.CategoryIds.Count > 0 && brandIds.Count == 0)
                 return new List<Model.Brand>();
 
-            return _mapper.Map<List<Model.Brand>>(list.ToList());
+            var result = _mapper.Map<List<Model.Brand>>(list.ToList());
+            foreach(var item in result)
+            {
+                item.Categories = string.Join(", ", _context.Categories
+                    .Where(x => item.CategoriesBrands.Select(y => y.CategoryId).Contains(x.Id))
+                    .Select(x => x.Name).ToList());
+            }
+
+            return result;
         }
 
         public override Model.Brand Insert(BrandUpsertRequest request)

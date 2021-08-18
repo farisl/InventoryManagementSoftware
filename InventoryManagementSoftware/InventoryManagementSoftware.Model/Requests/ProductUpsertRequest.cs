@@ -14,16 +14,9 @@ namespace InventoryManagementSoftware.Model.Requests
         public int CategoryId { get; set; }
         [Required(ErrorMessage = "BrandId is a Required field")]
         public int BrandId { get; set; }
+        [Required(ErrorMessage = "Price is a Required field")]
         [Range(0, 10000)]
-        public double? Price { get; set; }
-        public List<ProductAttribue> ProductAttributes { get; set; } = new List<ProductAttribue>();
-
-        public class ProductAttribue
-        {
-            [Required(ErrorMessage = "AttributeName is a Required field")]
-            public string AttributeName { get; set; }
-            [Required(ErrorMessage = "AttributeValue is a Required field")]
-            public string AttributeValue { get; set; }
-        }
+        public double Price { get; set; }
+        public List<ProductAttribute> ProductAttributes { get; set; } = new List<ProductAttribute>();
     }
 }

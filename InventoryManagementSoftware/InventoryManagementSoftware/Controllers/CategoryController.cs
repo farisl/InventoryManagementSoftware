@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSoftware.Controllers
 {
-    public class CategoryController : BaseCRUDController<Model.Category, Database.Category, BaseUpsertRequest, BaseUpsertRequest, BaseUpsertRequest>
+    public class CategoryController : BaseCRUDController<Model.Category, Database.Category, BaseUpsertRequest, BaseUpsertRequest, string>
     {
         public CategoryController(ICategoryService service) : base(service)
         {

@@ -19,8 +19,8 @@ namespace InventoryManagementSoftware.Model.Requests
         [MaxLength(13, ErrorMessage = "Jmbg must be 13 characters long")]
         public string Jmbg { get; set; }
         [Required(ErrorMessage = "BirthDate is a Required field")]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-mm-dd}", ApplyFormatInEditMode = true)]
+        //[DataType(DataType.DateTime)]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-mm-dd}", ApplyFormatInEditMode = true)]
         public DateTime BirthDate { get; set; }
         [Required(ErrorMessage = "AddressName is a Required field")]
         public string AddressName { get; set; }
@@ -34,8 +34,8 @@ namespace InventoryManagementSoftware.Model.Requests
         public string PhoneNumber { get; set; }
         public bool Active { get; set; }
         public int? InventoryId { get; set; }
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-mm-dd}", ApplyFormatInEditMode = true)]
+        //[DataType(DataType.DateTime)]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-mm-dd}", ApplyFormatInEditMode = true)]
         public DateTime? HireDate { get; set; } = null;
         [Range(0, 10000)]
         public double? Salary { get; set; }

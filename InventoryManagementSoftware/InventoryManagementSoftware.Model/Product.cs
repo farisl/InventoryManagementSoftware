@@ -11,5 +11,11 @@ namespace InventoryManagementSoftware.Model
         public string Description { get; set; }
         public bool IsDeleted { get; set; }
         public int CategoryBrandId { get; set; }
+
+        public virtual CategoriesBrand CategoryBrand { get; set; }
+        public string Category => CategoryBrand?.Category?.Name;
+        public string Brand { get; set; }
+        public string Price => $"${PriceValue}";
+        public double PriceValue { get; set; }
     }
 }

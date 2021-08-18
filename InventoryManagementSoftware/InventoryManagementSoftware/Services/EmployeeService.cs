@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using eProdaja.Filters;
 using InventoryManagementSoftware.Controllers;
 using InventoryManagementSoftware.Database;
 using InventoryManagementSoftware.Model.Requests;
@@ -25,7 +26,12 @@ namespace InventoryManagementSoftware.Services
 
         public override IEnumerable<Model.Employee> Get(EmployeeSearchObject search)
         {
-            var list = _context.Employees.AsQueryable();
+            var list = _context.Employees
+                .Include(x => x.EmployeeInventories).ThenInclude(x => x.Inventory)
+                .Include(x => x.Gender)
+                .Include(x => x.Address).ThenInclude(x => x.City)
+                .Include(x => x.EmployeeSalaries)
+                .AsQueryable();
 
             if (!string.IsNullOrEmpty(search?.FirstName))
                 list = list.Where(x => x.FirstName.StartsWith(search.FirstName));
@@ -33,15 +39,7 @@ namespace InventoryManagementSoftware.Services
                 list = list.Where(x => x.LastName.StartsWith(search.LastName));
             if(search?.InventoryId != null)
             {
-                List<int> employeeIds = new List<int>();
-                foreach (var item in _context.EmployeeInventories.Where(x => x.InventoryId == search.InventoryId && x.EndDate == null)
-                    .ToList())
-                {
-                    employeeIds.Add(item.EmployeeId);
-                }
-                if (employeeIds.Count == 0)
-                    return new List<Model.Employee>();
-                list = list.Where(x => employeeIds.Contains(x.Id));               
+                list = list.Where(x => x.EmployeeInventories.Select(y => y.InventoryId).Contains((int)search.InventoryId));         
             }
 
             return _mapper.Map<List<Model.Employee>>(list.ToList());
@@ -85,17 +83,14 @@ namespace InventoryManagementSoftware.Services
                 _context.SaveChanges();
             }
 
-            if(request.Salary != null)
+            _context.EmployeeSalaries.Add(new EmployeeSalary
             {
-                _context.EmployeeSalaries.Add(new EmployeeSalary
-                {
-                    EmployeeId = entity.Id,
-                    Value = (double)request.Salary,
-                    StartDate = DateTime.Now,
-                    EndDate = null
-                });
-                _context.SaveChanges();
-            }
+                EmployeeId = entity.Id,
+                Value = (double)request.Salary,
+                StartDate = DateTime.Now,
+                EndDate = null
+            });
+            _context.SaveChanges();
 
             return _mapper.Map<Model.Employee>(entity);
         }
@@ -103,10 +98,13 @@ namespace InventoryManagementSoftware.Services
         public override Model.Employee Update(int id, EmployeeUpdateRequest request)
         {
             var entity = _context.Employees.Include(x => x.Address).FirstOrDefault(x => x.Id == id);
+            if (entity == null)
+                throw new UserException("Employee not found!");
 
             _mapper.Map(request, entity);
             entity.Address.Name = request.AddressName;
             entity.Address.CityId = request.CityId;
+            _context.SaveChanges();
 
             var employeeInventory = _context.EmployeeInventories.FirstOrDefault(x => x.EmployeeId == id && x.EndDate == null);
             if (request.InventoryId != null)

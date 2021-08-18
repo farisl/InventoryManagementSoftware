@@ -56,6 +56,24 @@ namespace InventoryManagementSoftware.Mapping
             CreateMap<Database.Shelf, Model.Shelf>();
             CreateMap<ShelfInsertRequest, Database.Shelf>();
             CreateMap<ShelfUpdateRequest, Database.Shelf>();
+
+            CreateMap<Database.CategoriesBrand, Model.CategoriesBrand>();
+
+            CreateMap<Database.Address, Model.Address>();
+
+            CreateMap<Database.ProductShelf, Model.ProductShelf>();
+            CreateMap<ProductShelfUpsertRequest, Database.ProductShelf>();
+
+            CreateMap<Database.EmployeeInventory, Model.EmployeeInventory>();
+
+            CreateMap<Database.Gender, Model.Gender>();
+
+            CreateMap<Database.EmployeeSalary, Model.EmployeeSalary>();
+
+            CreateMap<Database.Attribute, Model.Attribute>();
+
+            CreateMap<Database.ProductAttribute, Model.ProductAttribute>();
+            CreateMap<ProductAttributeUpsertRequest, Database.ProductAttribute>();
         }
     }
 }

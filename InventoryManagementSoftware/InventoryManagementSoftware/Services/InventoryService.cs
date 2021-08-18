@@ -18,7 +18,9 @@ namespace InventoryManagementSoftware.Services
 
         public override IEnumerable<Model.Inventory> Get(InventorySearchObject search)
         {
-            var list = _context.Inventories.AsQueryable();
+            var list = _context.Inventories
+                .Include(x => x.Address).ThenInclude(x => x.City)
+                .AsQueryable();
 
             if (!string.IsNullOrEmpty(search?.Name))
                 list = list.Where(x => x.Name.StartsWith(search.Name));

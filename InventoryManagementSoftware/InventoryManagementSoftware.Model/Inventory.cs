@@ -11,5 +11,9 @@ namespace InventoryManagementSoftware.Model
         public int AddressId { get; set; }
         public string PhoneNumber { get; set; }
         public float Size { get; set; }
+
+        public virtual Address Address { get; set; }
+        public string Location => $"{Address?.Name}, {Address?.City?.Name}";
+        public string SizeStr => $"{Size}m2";
     }
 }

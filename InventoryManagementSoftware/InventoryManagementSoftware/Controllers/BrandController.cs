@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSoftware.Controllers
 {
-    public class BrandController : BaseCRUDController<Model.Brand, Database.Brand, BrandUpsertRequest, BrandUpsertRequest, BrandUpsertRequest>
+    public class BrandController : BaseCRUDController<Model.Brand, Database.Brand, BrandUpsertRequest, BrandUpsertRequest, BrandSearchObject>
     {
         public BrandController(IBrandService service) : base(service)
         {

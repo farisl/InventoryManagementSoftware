@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using InventoryManagementSoftware.Database;
 using InventoryManagementSoftware.Model.Requests;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,9 @@ namespace InventoryManagementSoftware.Services
 
         public override IEnumerable<Model.Department> Get(DepartmentSearchObject search)
         {
-            var list = _context.Departments.AsQueryable();
+            var list = _context.Departments
+                .Include(x => x.Inventory)
+                .AsQueryable();
 
             if (!string.IsNullOrEmpty(search?.Name))
                 list = list.Where(x => x.Name.StartsWith(search.Name));

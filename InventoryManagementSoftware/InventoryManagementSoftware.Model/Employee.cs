@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace InventoryManagementSoftware.Model
@@ -20,5 +21,20 @@ namespace InventoryManagementSoftware.Model
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public int UserId { get; set; }
+
+        public virtual ICollection<EmployeeInventory> EmployeeInventories { get; set; }
+        public virtual ICollection<EmployeeSalary> EmployeeSalaries { get; set; }
+        public virtual Address Address { get; set; }
+        public virtual Gender Gender { get; set; }
+        public string FullName => $"{FirstName} {LastName}";
+        public Inventory ActiveInventory => EmployeeInventories?.Where(x => x.EmployeeId == Id && x.EndDate == null)
+            .FirstOrDefault()?.Inventory;
+        public string Inventory => EmployeeInventories?.Where(x => x.EmployeeId == Id && x.EndDate == null)
+            .FirstOrDefault()?.Inventory?.Name;
+        public string GenderName => GenderId == 1 ? "M" : "F";
+        public DateTime? HireDate => EmployeeInventories?.Where(x => x.EmployeeId == Id && x.EndDate == null)
+            .FirstOrDefault()?.HireDate;
+        public double? Salary => EmployeeSalaries?.Where(x => x.EmployeeId == Id && x.EndDate == null)
+            .FirstOrDefault()?.Value;
     }
 }

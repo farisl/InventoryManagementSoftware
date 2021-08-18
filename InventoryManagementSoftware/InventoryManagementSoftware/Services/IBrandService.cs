@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSoftware.Services
 {
-    public interface IBrandService : ICRUDService<Model.Brand, BrandUpsertRequest, BrandUpsertRequest, BrandUpsertRequest>
+    public interface IBrandService : ICRUDService<Model.Brand, BrandUpsertRequest, BrandUpsertRequest, BrandSearchObject>
     {
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using InventoryManagementSoftware.Database;
 using InventoryManagementSoftware.Model.Requests;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,10 @@ namespace InventoryManagementSoftware.Services
 
         public override IEnumerable<Model.Shelf> Get(ShelfSearchObject search)
         {
-            var list = _context.Shelves.AsQueryable();
+            var list = _context.Shelves
+                .Include(x => x.Department).ThenInclude(x => x.Inventory)
+                .Include(x => x.ProductShelves)
+                .AsQueryable();
 
             if (search?.DepartmentId != null)
                 list = list.Where(x => x.DepartmentId == search.DepartmentId);
