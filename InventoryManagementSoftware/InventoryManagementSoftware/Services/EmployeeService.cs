@@ -45,6 +45,19 @@ namespace InventoryManagementSoftware.Services
             return _mapper.Map<List<Model.Employee>>(list.ToList());
         }
 
+        public override Model.Employee GetById(int id)
+        {
+            var employee = _context.Employees
+                .Include(x => x.EmployeeInventories).ThenInclude(x => x.Inventory)
+                .Include(x => x.Gender)
+                .Include(x => x.Address).ThenInclude(x => x.City)
+                .Include(x => x.EmployeeSalaries)
+                .Include(x => x.User)
+                .First(x => x.Id == id);
+
+            return _mapper.Map<Model.Employee>(employee);
+        }
+
         public override Model.Employee Insert(EmployeeInsertRequest request)
         {
             var entity = _mapper.Map<Database.Employee>(request);
@@ -66,7 +79,7 @@ namespace InventoryManagementSoftware.Services
                 Email = (request.FirstName + request.LastName.Substring(0, 1)).ToLower() + "@ims.ba",
                 Username = (request.FirstName + request.LastName.Substring(0, 1)).ToLower()
             };
-            entity.UserId = _authManagementService.Register(newUser).Result.Id;
+            entity.UserId = _authManagementService.Register(newUser).Result.UserId;
             _context.Employees.Add(entity);
             _context.SaveChanges();
 

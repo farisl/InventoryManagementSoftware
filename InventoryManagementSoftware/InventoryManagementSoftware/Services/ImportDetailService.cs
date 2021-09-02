@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using eProdaja.Filters;
 using InventoryManagementSoftware.Database;
 using InventoryManagementSoftware.Model.Requests;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +10,21 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSoftware.Services
 {
-    public class ImportDetailService : BaseCRUDService<Model.ImportDetail, Database.ImportDetail, ImportDetailInsertRequest, ImportDetailUpdateRequest, object>
+    public class ImportDetailService : BaseCRUDService<Model.ImportDetail, Database.ImportDetail, ImportDetailInsertRequest, ImportDetailUpdateRequest, ImportExportDetailSearchObject>
         , IImportDetailService
     {
         public ImportDetailService(IMSContext context, IMapper mapper) : base(context, mapper)
         {
+        }
+
+        public override IEnumerable<Model.ImportDetail> Get(ImportExportDetailSearchObject search)
+        {
+            var list = _context.ImportDetails.Include(x => x.Product).AsQueryable();
+
+            if (search?.ImportExportId != null)
+                list = list.Where(x => x.ImportId == search.ImportExportId);
+
+            return _mapper.Map<List<Model.ImportDetail>>(list);
         }
 
         public override Model.ImportDetail Insert(ImportDetailInsertRequest request)
@@ -41,15 +53,17 @@ namespace InventoryManagementSoftware.Services
             return _mapper.Map<Model.ImportDetail>(entity);
         }
 
-        public IEnumerable<Model.ImportDetail> Delete(int id)
+        public bool Delete(int id)
         {
             var entity = _context.ImportDetails.Find(id);
+
+            if (entity == null)
+                throw new UserException("Entity with provided id does not exist!");
 
             _context.ImportDetails.Remove(entity);
             _context.SaveChanges();
 
-            var list = _context.ImportDetails.ToList();
-            return _mapper.Map<List<Model.ImportDetail>>(list);
+            return true;
         }
     }
 }

@@ -9,7 +9,9 @@ namespace InventoryManagementSoftware.Security
     {
         public string Token { get; set; }
         public bool Success { get; set; }
-        public int Id { get; set; }
+        public int UserId { get; set; }
+        public int? EmployeeId { get; set; }
+        public int? InventoryId { get; set; }
         public List<string> Errors { get; set; }
     }
 }

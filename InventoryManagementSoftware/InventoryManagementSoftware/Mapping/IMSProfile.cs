@@ -53,6 +53,10 @@ namespace InventoryManagementSoftware.Mapping
             CreateMap<ImportInsertRequest, Database.Import>();
             CreateMap<ImportUpdateRequest, Database.Import>();
 
+            CreateMap<Database.ImportDetail, Model.ImportDetail>();
+            CreateMap<ImportDetailInsertRequest, Database.ImportDetail>();
+            CreateMap<ImportDetailUpdateRequest, Database.ImportDetail>();
+
             CreateMap<Database.Shelf, Model.Shelf>();
             CreateMap<ShelfInsertRequest, Database.Shelf>();
             CreateMap<ShelfUpdateRequest, Database.Shelf>();
@@ -74,6 +78,13 @@ namespace InventoryManagementSoftware.Mapping
 
             CreateMap<Database.ProductAttribute, Model.ProductAttribute>();
             CreateMap<ProductAttributeUpsertRequest, Database.ProductAttribute>();
+
+            CreateMap<Database.Notification, Model.Notification>();
+            CreateMap<NotificationInsertRequest, Database.Notification>();
+            
+            CreateMap<Database.UserNotification, Model.UserNotification>();
+            CreateMap<UserNotificationInsertRequest, Database.UserNotification>();
+            CreateMap<UserNotificationUpdateRequest, Database.UserNotification>();
         }
     }
 }

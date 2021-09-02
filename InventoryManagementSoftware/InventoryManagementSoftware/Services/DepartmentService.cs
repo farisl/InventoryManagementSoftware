@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using eProdaja.Filters;
 using InventoryManagementSoftware.Database;
 using InventoryManagementSoftware.Model.Requests;
 using Microsoft.EntityFrameworkCore;
@@ -29,8 +30,25 @@ namespace InventoryManagementSoftware.Services
             if (search?.SizeFrom != null && search?.SizeTo != null)
                 list = list.Where(x => x.Size >= search.SizeFrom && x.Size <= search.SizeTo);
 
+            if (search?.EmployeeId != null)
+                list = list.Where(x => EmployeeDepartmentsIds((int)search.EmployeeId).Contains(x.Id));
+
             return _mapper.Map<List<Model.Department>>(list.ToList());
         }
+
+        private List<int> EmployeeDepartmentsIds(int employeeId)
+        {
+            int? inventoryId = _context.EmployeeInventories.Where(x => x.EmployeeId == employeeId && x.EndDate == null)
+                .FirstOrDefault()?.InventoryId;
+
+            if (inventoryId == null)
+                return null;
+
+            List<int> list = _context.Departments.Where(x => x.InventoryId == inventoryId).Select(x => x.Id).ToList();
+
+            return list;
+        }
+
 
     }
 }

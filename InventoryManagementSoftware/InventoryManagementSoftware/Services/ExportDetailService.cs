@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using InventoryManagementSoftware.Database;
 using InventoryManagementSoftware.Model.Requests;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +9,21 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSoftware.Services
 {
-    public class ExportDetailService : BaseCRUDService<Model.ExportDetail, Database.ExportDetail, ExportDetailInsertRequest, ExportDetailUpdateRequest, object>
+    public class ExportDetailService : BaseCRUDService<Model.ExportDetail, Database.ExportDetail, ExportDetailInsertRequest, ExportDetailUpdateRequest, ImportExportDetailSearchObject>
         , IExportDetailService
     {
         public ExportDetailService(IMSContext context, IMapper mapper) : base(context, mapper)
         {
+        }
+
+        public override IEnumerable<Model.ExportDetail> Get(ImportExportDetailSearchObject search)
+        {
+            var list = _context.ExportDetails.Include(x => x.Product).AsQueryable();
+
+            if (search?.ImportExportId != null)
+                list = list.Where(x => x.ExportId == search.ImportExportId);
+
+            return _mapper.Map<List<Model.ExportDetail>>(list);
         }
 
         public override Model.ExportDetail Insert(ExportDetailInsertRequest request)

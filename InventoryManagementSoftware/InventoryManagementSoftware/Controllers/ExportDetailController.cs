@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSoftware.Controllers
 {
-    public class ExportDetailController : BaseCRUDController<Model.ExportDetail, Database.ExportDetail, ExportDetailInsertRequest, ExportDetailUpdateRequest, object>
+    public class ExportDetailController : BaseCRUDController<Model.ExportDetail, Database.ExportDetail, ExportDetailInsertRequest, ExportDetailUpdateRequest, ImportExportDetailSearchObject>
     {
         private readonly IExportDetailService _service;
 

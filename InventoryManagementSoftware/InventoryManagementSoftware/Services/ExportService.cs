@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using InventoryManagementSoftware.Database;
 using InventoryManagementSoftware.Model.Requests;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,9 @@ namespace InventoryManagementSoftware.Services
 
         public override IEnumerable<Model.Export> Get(ExportSearchObject search)
         {
-            var list = _context.Exports.AsQueryable();
+            var list = _context.Exports
+                .Include(x => x.Customer).Include(x => x.ExportDetails)
+                .AsQueryable();
 
             if (search?.DateFrom != null && search?.DateTo != null)
                 list = list.Where(x => x.Date >= search.DateFrom && x.Date <= search.DateTo);

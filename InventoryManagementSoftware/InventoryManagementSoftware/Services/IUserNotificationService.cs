@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSoftware.Services
 {
-    public interface IImportDetailService : ICRUDService<Model.ImportDetail, ImportDetailInsertRequest, ImportDetailUpdateRequest, ImportExportDetailSearchObject>
+    public interface IUserNotificationService : ICRUDService<Model.UserNotification, UserNotificationInsertRequest, UserNotificationUpdateRequest, UserNotificationSearchObject>
     {
-        bool Delete(int id);
     }
 }

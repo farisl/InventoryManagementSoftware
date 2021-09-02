@@ -25,7 +25,7 @@ namespace InventoryManagementSoftware.Controllers
         }
 
         [HttpPut("{id}")]
-        public T Update(int id, TUpdate request)
+        virtual public T Update(int id, TUpdate request)
         {
             return _crudService.Update(id, request);
         }

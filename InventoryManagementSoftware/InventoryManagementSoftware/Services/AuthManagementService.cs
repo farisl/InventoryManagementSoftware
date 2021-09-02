@@ -1,4 +1,5 @@
 ﻿using eProdaja.Filters;
+using InventoryManagementSoftware.Database;
 using InventoryManagementSoftware.Model.Requests;
 using InventoryManagementSoftware.Security;
 using Microsoft.AspNetCore.Identity;
@@ -16,13 +17,17 @@ namespace InventoryManagementSoftware.Services
 {
     public class AuthManagementService : IAuthManagementService
     {
+        public static int UserId;
+
         private readonly UserManager<IdentityUser<int>> _userManager;
         private readonly JwtConfig _jwtConfig;
+        private readonly IMSContext _context;
 
-        public AuthManagementService(UserManager<IdentityUser<int>> userManager, IOptionsMonitor<JwtConfig> optionsMonitor)
+        public AuthManagementService(UserManager<IdentityUser<int>> userManager, IOptionsMonitor<JwtConfig> optionsMonitor, IMSContext context)
         {
             _userManager = userManager;
             _jwtConfig = optionsMonitor.CurrentValue;
+            _context = context;
         }
 
         public async Task<AuthResult> Login(UserLoginRequest request)
@@ -39,7 +44,17 @@ namespace InventoryManagementSoftware.Services
 
             var jwtToken = GenerateJwtToken(existingUser);
 
-            return new AuthResult { Success = true, Token = jwtToken };
+            int? employeeId = _context.Employees.Where(x => x.UserId == existingUser.Id).FirstOrDefault()?.Id;
+            int? inventoryId = _context.EmployeeInventories.Where(x => x.EmployeeId == employeeId && x.EndDate == null)
+                .FirstOrDefault()?.InventoryId;
+
+            UserId = existingUser.Id;
+
+            return new AuthResult { Success = true, Token = jwtToken,
+                UserId = existingUser.Id,
+                EmployeeId = (int)(employeeId != null ? employeeId : 0),
+                InventoryId = (int)(inventoryId != null ? inventoryId : 0)
+            };
         }
 
         public async Task<AuthResult> Register(UserRegistrationRequest request)
@@ -59,7 +74,7 @@ namespace InventoryManagementSoftware.Services
 
             var jwtToken = GenerateJwtToken(newUser);
 
-            return new AuthResult { Success = true, Token = jwtToken, Id = newUser.Id };
+            return new AuthResult { Success = true, Token = jwtToken, UserId = newUser.Id };
         }
 
         private string GenerateJwtToken(IdentityUser<int> user)

@@ -9,16 +9,17 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSoftware.Controllers
 {
-    public class ImportDetailController : BaseCRUDController<Model.ImportDetail, Database.ImportDetail, ImportDetailInsertRequest, ImportDetailUpdateRequest, object>
+    public class ImportDetailController : BaseCRUDController<Model.ImportDetail, Database.ImportDetail, ImportDetailInsertRequest, ImportDetailUpdateRequest, ImportExportDetailSearchObject>
     {
         private readonly IImportDetailService _service;
 
         public ImportDetailController(IImportDetailService service) : base(service)
         {
+            _service = service;
         }
 
         [HttpDelete("{id}")]
-        public IEnumerable<Model.ImportDetail> Delete(int id)
+        public bool Delete(int id)
         {
             return _service.Delete(id);
         }

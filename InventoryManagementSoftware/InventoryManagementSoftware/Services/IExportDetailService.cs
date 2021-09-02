@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSoftware.Services
 {
-    public interface IExportDetailService : ICRUDService<Model.ExportDetail, ExportDetailInsertRequest, ExportDetailUpdateRequest, object>
+    public interface IExportDetailService : ICRUDService<Model.ExportDetail, ExportDetailInsertRequest, ExportDetailUpdateRequest, ImportExportDetailSearchObject>
     {
         IEnumerable<Model.ExportDetail> Delete(int id);
     }

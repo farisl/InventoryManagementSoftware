@@ -25,7 +25,7 @@ namespace InventoryManagementSoftware.Services
             return _mapper.Map<List<T>>(list);
         }
 
-        public T GetById(int id)
+        public virtual T GetById(int id)
         {
             var entity = _context.Set<TDb>().Find(id);
 

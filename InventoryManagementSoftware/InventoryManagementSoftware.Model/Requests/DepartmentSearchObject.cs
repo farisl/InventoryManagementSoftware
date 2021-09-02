@@ -13,5 +13,7 @@ namespace InventoryManagementSoftware.Model.Requests
         public float? SizeFrom { get; set; }
         [Range(0, 10000)]
         public float? SizeTo { get; set; }
+
+        public int? EmployeeId { get; set; }
     }
 }

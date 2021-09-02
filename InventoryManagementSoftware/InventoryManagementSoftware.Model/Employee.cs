@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,12 @@ namespace InventoryManagementSoftware.Model
         public virtual ICollection<EmployeeSalary> EmployeeSalaries { get; set; }
         public virtual Address Address { get; set; }
         public virtual Gender Gender { get; set; }
+        public virtual IdentityUser<int> User { get; set; }
         public string FullName => $"{FirstName} {LastName}";
+        public string Username => User?.UserName;
+        public int? CityId => Address?.CityId;
+        public string AddressName => Address?.Name;
+        public string City => Address?.City?.Name;
         public Inventory ActiveInventory => EmployeeInventories?.Where(x => x.EmployeeId == Id && x.EndDate == null)
             .FirstOrDefault()?.Inventory;
         public string Inventory => EmployeeInventories?.Where(x => x.EmployeeId == Id && x.EndDate == null)

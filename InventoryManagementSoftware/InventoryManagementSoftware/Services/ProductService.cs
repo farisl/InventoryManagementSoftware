@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using eProdaja.Filters;
 using InventoryManagementSoftware.Database;
 using InventoryManagementSoftware.Model.Requests;
 using Microsoft.EntityFrameworkCore;
@@ -39,6 +40,12 @@ namespace InventoryManagementSoftware.Services
                     return new List<Model.Product>();
                 list = list.Where(x => productIds.Contains(x.Id));
             }
+
+            if (search?.EmployeeId != null)
+                list = list.Where(x => EmployeeProductsIds((int)search.EmployeeId).Contains(x.Id));
+            if (search?.DepartmentId != null)
+                list = list.Where(x => DepartmentProductsIds((int)search.DepartmentId).Contains(x.Id));
+
 
             var result = _mapper.Map<List<Model.Product>>(list.ToList());
             var productPrices = _context.ProductPrices.Where(x => x.EndDate == null).ToList();
@@ -120,6 +127,26 @@ namespace InventoryManagementSoftware.Services
             }
 
             return _mapper.Map<Model.Product>(entity);
+        }
+
+        private List<int> EmployeeProductsIds(int employeeId)
+        {
+            int? inventoryId = _context.EmployeeInventories.Where(x => x.EmployeeId == employeeId && x.EndDate == null)
+                .FirstOrDefault()?.InventoryId;
+
+            if (inventoryId == null)
+                return new List<int>();
+
+            List<int> list = _context.ProductShelves.Where(x => x.Shelf.Department.InventoryId == inventoryId)
+                .Select(x => x.ProductId).ToList();
+
+            return list;
+        }
+
+        private List<int> DepartmentProductsIds(int departmendId)
+        {
+            return _context.ProductShelves.Where(x => x.Shelf.DepartmentId == departmendId)
+                .Select(x => x.ProductId).ToList();
         }
 
     }

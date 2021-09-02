@@ -12,5 +12,8 @@ namespace InventoryManagementSoftware.Model
         public double Quantity { get; set; }
         public double Discount { get; set; }
         public double Price { get; set; }
+
+        public virtual Product Product { get; set; }
+        public string ProductName => Product?.Name;
     }
 }
