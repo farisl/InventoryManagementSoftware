@@ -19,7 +19,7 @@ namespace InventoryManagementSoftware.Services
         public override IEnumerable<Model.Import> Get(ImportSearchObject search)
         {
             var list = _context.Imports
-                .Include(x => x.Supplier).Include(x => x.ImportDetails)
+                .Include(x => x.Supplier).Include(x => x.ImportDetails).Include(x => x.Inventory)
                 .AsQueryable();
 
             if (search?.DateFrom != null && search?.DateTo != null)

@@ -7,9 +7,8 @@ namespace InventoryManagementSoftware.Model.Requests
 {
     public class UserLoginRequest
     {
-        [Required(ErrorMessage = "Email is a Required field")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Required(ErrorMessage = "Username is a Required field")]
+        public string Username { get; set; }
         [Required(ErrorMessage = "Password is a Required field")]
         public string Password { get; set; }
     }

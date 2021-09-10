@@ -8,5 +8,6 @@ namespace InventoryManagementSoftware.Services
 {
     public interface IProductService : ICRUDService<Model.Product, ProductUpsertRequest, ProductUpsertRequest, ProductSearchObject>
     {
+        Model.Product Recommend(int id);
     }
 }

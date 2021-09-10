@@ -1,0 +1,33 @@
+version: '3'
+services:
+#mssql docker
+  ims-sql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    restart: unless-stopped
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=test
+      - MSSQL_PID=Developer
+    ports:
+      - 1401:1433
+    networks:
+      - imsnet
+
+  ims-api:
+    restart: unless-stopped
+    build:
+      context: .
+    environment:
+      - ConnectionStrings:ims=Server=ims-sql,1433;Database=IMS;User=sa;Password=test;ConnectRetryCount=0
+    ports:
+      - 5001:80
+    networks:
+      - imsnet      
+    links:
+      - ims-sql
+    depends_on:
+      - ims-sql
+      
+networks:
+  imsnet:
+    driver: bridge 

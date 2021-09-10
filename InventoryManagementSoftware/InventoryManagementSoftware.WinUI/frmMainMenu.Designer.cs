@@ -47,6 +47,7 @@ namespace InventoryManagementSoftware.WinUI
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlDesktopPanel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnReports = new System.Windows.Forms.Button();
             this.pnlMenu.SuspendLayout();
             this.pnlLogo.SuspendLayout();
             this.pnlTitle.SuspendLayout();
@@ -57,6 +58,7 @@ namespace InventoryManagementSoftware.WinUI
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.pnlMenu.Controls.Add(this.btnReports);
             this.pnlMenu.Controls.Add(this.btnLogin);
             this.pnlMenu.Controls.Add(this.btnEmployees);
             this.pnlMenu.Controls.Add(this.btnDepartments);
@@ -312,6 +314,25 @@ namespace InventoryManagementSoftware.WinUI
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // btnReports
+            // 
+            this.btnReports.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnReports.FlatAppearance.BorderSize = 0;
+            this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReports.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnReports.Image = global::InventoryManagementSoftware.WinUI.Properties.Resources._912316__1_;
+            this.btnReports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReports.Location = new System.Drawing.Point(0, 460);
+            this.btnReports.Name = "btnReports";
+            this.btnReports.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btnReports.Size = new System.Drawing.Size(344, 60);
+            this.btnReports.TabIndex = 7;
+            this.btnReports.Text = "   Reports";
+            this.btnReports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReports.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReports.UseVisualStyleBackColor = true;
+            this.btnReports.Click += new System.EventHandler(this.btnReports_Click);
+            // 
             // frmMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -355,5 +376,6 @@ namespace InventoryManagementSoftware.WinUI
         private System.Windows.Forms.Button btnMaximize;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnMinimize;
+        private System.Windows.Forms.Button btnReports;
     }
 }

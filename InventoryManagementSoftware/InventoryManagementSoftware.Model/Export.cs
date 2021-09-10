@@ -14,9 +14,11 @@ namespace InventoryManagementSoftware.Model
         public int? EmployeeId { get; set; }
 
         public virtual Customer Customer { get; set; }
+        public virtual Inventory Inventory { get; set; }
         public virtual ICollection<ExportDetail> ExportDetails { get; set; }
         public string CustomerName => Customer?.Name;
         public string ProductsCount => $"{ExportDetails.Sum(x => x.Quantity)} products";
         public string DateString => Date.ToString("yyyy-MM-dd");
+        public string InventoryName => Inventory?.Name;
     }
 }

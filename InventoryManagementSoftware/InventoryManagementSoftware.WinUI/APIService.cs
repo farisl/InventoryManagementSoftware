@@ -62,19 +62,5 @@ namespace InventoryManagementSoftware.WinUI
             return await url.WithHeader("Authorization", Token).DeleteAsync().ReceiveJson<T>(); 
         }
 
-        private async Task<AuthResult> Authenticate()
-        {
-            UserLoginRequest request = new UserLoginRequest
-            {
-                Email = "eminl@ims.ba",
-                Password = "test"
-            };
-            APIService authService = new APIService("AuthManagement/Login");
-
-            var authResult = await authService.Insert<AuthResult>(request);
-            Token = $"Bearer {authResult.Token}";
-            return authResult;
-        }
-
     }
 }

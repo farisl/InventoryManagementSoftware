@@ -32,7 +32,7 @@ namespace InventoryManagementSoftware.Services
 
         public async Task<AuthResult> Login(UserLoginRequest request)
         {
-            var existingUser = await _userManager.FindByEmailAsync(request.Email);
+            var existingUser = await _userManager.FindByNameAsync(request.Username);
 
             if (existingUser == null)
                 throw new UserException("Incorrect username or password");

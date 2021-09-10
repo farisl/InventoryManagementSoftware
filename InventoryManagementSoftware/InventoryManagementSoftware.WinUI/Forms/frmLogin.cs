@@ -23,7 +23,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
-            if (ValidateEmail() && ValidatePassword())
+            if (ValidateUsername() && ValidatePassword())
             {
                 try
                 {
@@ -48,7 +48,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
         {
             UserLoginRequest request = new UserLoginRequest
             {
-                Email = txtEmail.Text,
+                Username = txtUsername.Text,
                 Password = txtPassword.Text
             };
 
@@ -74,24 +74,18 @@ namespace InventoryManagementSoftware.WinUI.Forms
             return status;
         }
 
-        private bool ValidateEmail()
+        private bool ValidateUsername()
         {
             bool status;
-            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            if (string.IsNullOrWhiteSpace(txtUsername.Text))
             {
-                txtEmail.Focus();
-                errorProvider.SetError(txtEmail, "This is a required field!");
-                status = false;
-            }
-            else if (!Regex.IsMatch(txtEmail.Text, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
-            {
-                txtEmail.Focus();
-                errorProvider.SetError(txtEmail, "Enter a valid email format!");
+                txtUsername.Focus();
+                errorProvider.SetError(txtUsername, "This is a required field!");
                 status = false;
             }
             else
             {
-                errorProvider.SetError(txtEmail, "");
+                errorProvider.SetError(txtUsername, "");
                 status = true;
             }
             return status;

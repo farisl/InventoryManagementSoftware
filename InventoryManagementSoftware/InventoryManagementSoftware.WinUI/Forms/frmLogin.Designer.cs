@@ -30,8 +30,8 @@ namespace InventoryManagementSoftware.WinUI.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.lblEmail = new System.Windows.Forms.Label();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.lblUsername = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.lblPassword = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
@@ -39,21 +39,21 @@ namespace InventoryManagementSoftware.WinUI.Forms
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtEmail
+            // txtUsername
             // 
-            this.txtEmail.Location = new System.Drawing.Point(499, 180);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(169, 27);
-            this.txtEmail.TabIndex = 6;
+            this.txtUsername.Location = new System.Drawing.Point(499, 180);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(169, 27);
+            this.txtUsername.TabIndex = 6;
             // 
-            // lblEmail
+            // lblUsername
             // 
-            this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(404, 183);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(46, 20);
-            this.lblEmail.TabIndex = 5;
-            this.lblEmail.Text = "Email";
+            this.lblUsername.AutoSize = true;
+            this.lblUsername.Location = new System.Drawing.Point(404, 183);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(75, 20);
+            this.lblUsername.TabIndex = 5;
+            this.lblUsername.Text = "Username";
             // 
             // txtPassword
             // 
@@ -95,8 +95,8 @@ namespace InventoryManagementSoftware.WinUI.Forms
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.lblPassword);
-            this.Controls.Add(this.txtEmail);
-            this.Controls.Add(this.lblEmail);
+            this.Controls.Add(this.txtUsername);
+            this.Controls.Add(this.lblUsername);
             this.Name = "frmLogin";
             this.Text = "frmLogin";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
@@ -107,8 +107,8 @@ namespace InventoryManagementSoftware.WinUI.Forms
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.Button btnLogin;

@@ -14,10 +14,12 @@ namespace InventoryManagementSoftware.Model
         public int? EmployeeId { get; set; }
 
         public virtual Supplier Supplier { get; set; }
+        public virtual Inventory Inventory { get; set; }
         public virtual ICollection<ImportDetail> ImportDetails { get; set; }
         public string SupplierName => Supplier?.Name;
         public string ProductsCount => $"{ImportDetails.Sum(x => x.Quantity)} products";
         public string DateString => Date.ToString("yyyy-MM-dd");
+        public string InventoryName => Inventory?.Name;
 
     }
 }

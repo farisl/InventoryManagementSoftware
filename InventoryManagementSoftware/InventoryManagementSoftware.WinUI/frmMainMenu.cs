@@ -11,6 +11,8 @@ namespace InventoryManagementSoftware.WinUI
 {
     public partial class frmMainMenu : Form
     {
+        private readonly PDFGenerator pdfGenertor = new PDFGenerator();
+
         private Button currentButton;
         private Random random;
         private int tempIndex;
@@ -186,6 +188,13 @@ namespace InventoryManagementSoftware.WinUI
         private void btnLogin_Click(object sender, EventArgs e)
         {
             OpenChildForm(new Forms.frmLogin(), sender);
+        }
+
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+            pdfGenertor.ExportToPdf();
+            pdfGenertor.ImportToPdf();
+            MessageBox.Show("Reports successfully created.");
         }
     }
 }
