@@ -28,10 +28,17 @@ namespace InventoryManagementSoftware.WinUI.Forms
                 try
                 {
                     var authResult = await Authenticate();
-                    var parentForm = ParentForm as frmMainMenu;
-                    parentForm.EnableButtons();
+                    if (!authResult.Roles.Contains("Administrator"))
+                    {
+                        MessageBox.Show("You are not authorized!");
+                    }
+                    else
+                    {
+                        var parentForm = ParentForm as frmMainMenu;
+                        parentForm.EnableButtons();
 
-                    this.Close();
+                        this.Close();
+                    }
                 }
                 catch
                 {

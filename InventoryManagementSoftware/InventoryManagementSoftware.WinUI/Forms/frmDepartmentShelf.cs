@@ -105,7 +105,8 @@ namespace InventoryManagementSoftware.WinUI.Forms
 
         private async void btnAdd_Click(object sender, EventArgs e)
         {
-            frmDepartment frm = new frmDepartment();
+            var item = cmbInventories.SelectedItem as Inventory;
+            frmDepartment frm = new frmDepartment(null, item.Id);
             frm.ShowDialog();
             await LoadData();
         }
@@ -117,9 +118,13 @@ namespace InventoryManagementSoftware.WinUI.Forms
 
         private async void addShelf_Click(object sender, EventArgs e)
         {
-            frmShelf frm = new frmShelf();
-            frm.ShowDialog();
-            await LoadShelves();
+            if (cmbDepartments.Items.Count > 0)
+            {
+                var item = cmbDepartments.SelectedItem as Department;
+                frmShelf frm = new frmShelf(item);
+                frm.ShowDialog();
+                await LoadShelves();
+            }
         }
 
         private async void dgvShelves_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

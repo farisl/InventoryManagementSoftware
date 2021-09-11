@@ -201,9 +201,9 @@ namespace InventoryManagementSoftware.WinUI
                         var StringQuantity = new Paragraph("Quantity: ", importDetailFontStyle);
                         var ImportDetailQuantity = new Paragraph(x.Quantity.ToString());
                         var StringDiscount = new Paragraph("Discount: ", importDetailFontStyle);
-                        var ImportDetailDiscount = new Paragraph($"{x.Discount}%");
+                        var ImportDetailDiscount = new Paragraph($"{x.Discount * 100}%");
                         var StringPrice = new Paragraph("Total price: ", importDetailFontStyle);
-                        var ImportDetailPrice = new Paragraph(x.Price.ToString());
+                        var ImportDetailPrice = new Paragraph($"${x.Price.ToString()}");
 
                         pdfDoc.Add(StringProduct);
                         pdfDoc.Add(ImportDetailProduct);

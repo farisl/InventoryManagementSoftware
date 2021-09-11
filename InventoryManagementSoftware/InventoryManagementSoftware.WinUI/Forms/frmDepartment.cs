@@ -16,11 +16,13 @@ namespace InventoryManagementSoftware.WinUI.Forms
         APIService inventoryService = new APIService("Inventory");
         APIService departmentService = new APIService("Department");
         private Department _department;
+        private int? _inventoryId;
 
-        public frmDepartment(Department department = null)
+        public frmDepartment(Department department = null, int? inventoryId = null)
         {
             InitializeComponent();
             _department = department;
+            _inventoryId = inventoryId;
         }
 
         private async void frmDepartment_Load(object sender, EventArgs e)
@@ -43,6 +45,17 @@ namespace InventoryManagementSoftware.WinUI.Forms
                 foreach (var item in cmbInventories.Items)
                 {
                     if (_department.InventoryId == (item as Inventory).Id)
+                    {
+                        cmbInventories.SelectedItem = item;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                foreach(var item in cmbInventories.Items)
+                {
+                    if((item as Inventory).Id == _inventoryId)
                     {
                         cmbInventories.SelectedItem = item;
                         break;

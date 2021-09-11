@@ -136,5 +136,14 @@ namespace InventoryManagementSoftware.WinUI.Forms
             frm.ShowDialog();
             await LoadData();
         }
+
+        private async void btnDetails_Click(object sender, EventArgs e)
+        {
+            var item = dgvProducts.SelectedRows[0].DataBoundItem;
+
+            frmProductDetails frm = new frmProductDetails(item as Product);
+            frm.ShowDialog();
+            await LoadData();
+        }
     }
 }

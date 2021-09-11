@@ -29,9 +29,9 @@ namespace InventoryManagementSoftware.WinUI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMainMenu));
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.btnReports = new System.Windows.Forms.Button();
             this.btnEmployees = new System.Windows.Forms.Button();
             this.btnDepartments = new System.Windows.Forms.Button();
             this.btnInventories = new System.Windows.Forms.Button();
@@ -47,7 +47,6 @@ namespace InventoryManagementSoftware.WinUI
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlDesktopPanel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnReports = new System.Windows.Forms.Button();
             this.pnlMenu.SuspendLayout();
             this.pnlLogo.SuspendLayout();
             this.pnlTitle.SuspendLayout();
@@ -58,8 +57,8 @@ namespace InventoryManagementSoftware.WinUI
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.pnlMenu.Controls.Add(this.btnReports);
             this.pnlMenu.Controls.Add(this.btnLogin);
+            this.pnlMenu.Controls.Add(this.btnReports);
             this.pnlMenu.Controls.Add(this.btnEmployees);
             this.pnlMenu.Controls.Add(this.btnDepartments);
             this.pnlMenu.Controls.Add(this.btnInventories);
@@ -78,18 +77,37 @@ namespace InventoryManagementSoftware.WinUI
             this.btnLogin.FlatAppearance.BorderSize = 0;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnLogin.Image = global::InventoryManagementSoftware.WinUI.Properties.Resources.login__1_;
+            this.btnLogin.Image = global::InventoryManagementSoftware.WinUI.Properties.Resources.login;
             this.btnLogin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLogin.Location = new System.Drawing.Point(0, 400);
+            this.btnLogin.Location = new System.Drawing.Point(0, 460);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.btnLogin.Size = new System.Drawing.Size(344, 60);
-            this.btnLogin.TabIndex = 6;
+            this.btnLogin.TabIndex = 7;
             this.btnLogin.Text = "   Login";
             this.btnLogin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLogin.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            // 
+            // btnReports
+            // 
+            this.btnReports.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnReports.FlatAppearance.BorderSize = 0;
+            this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReports.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnReports.Image = global::InventoryManagementSoftware.WinUI.Properties.Resources.report;
+            this.btnReports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReports.Location = new System.Drawing.Point(0, 400);
+            this.btnReports.Name = "btnReports";
+            this.btnReports.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btnReports.Size = new System.Drawing.Size(344, 60);
+            this.btnReports.TabIndex = 6;
+            this.btnReports.Text = "   Reports";
+            this.btnReports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReports.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReports.UseVisualStyleBackColor = true;
+            this.btnReports.Click += new System.EventHandler(this.btnReports_Click);
             // 
             // btnEmployees
             // 
@@ -97,7 +115,7 @@ namespace InventoryManagementSoftware.WinUI
             this.btnEmployees.FlatAppearance.BorderSize = 0;
             this.btnEmployees.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEmployees.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnEmployees.Image = global::InventoryManagementSoftware.WinUI.Properties.Resources._912316__1_;
+            this.btnEmployees.Image = global::InventoryManagementSoftware.WinUI.Properties.Resources.employees;
             this.btnEmployees.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEmployees.Location = new System.Drawing.Point(0, 340);
             this.btnEmployees.Name = "btnEmployees";
@@ -116,7 +134,7 @@ namespace InventoryManagementSoftware.WinUI
             this.btnDepartments.FlatAppearance.BorderSize = 0;
             this.btnDepartments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDepartments.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnDepartments.Image = global::InventoryManagementSoftware.WinUI.Properties.Resources._3134484__1_;
+            this.btnDepartments.Image = global::InventoryManagementSoftware.WinUI.Properties.Resources.departments;
             this.btnDepartments.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDepartments.Location = new System.Drawing.Point(0, 280);
             this.btnDepartments.Name = "btnDepartments";
@@ -135,7 +153,7 @@ namespace InventoryManagementSoftware.WinUI
             this.btnInventories.FlatAppearance.BorderSize = 0;
             this.btnInventories.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventories.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnInventories.Image = global::InventoryManagementSoftware.WinUI.Properties.Resources._3872744__1_;
+            this.btnInventories.Image = global::InventoryManagementSoftware.WinUI.Properties.Resources.inventories;
             this.btnInventories.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInventories.Location = new System.Drawing.Point(0, 220);
             this.btnInventories.Name = "btnInventories";
@@ -154,7 +172,7 @@ namespace InventoryManagementSoftware.WinUI
             this.btnProducts.FlatAppearance.BorderSize = 0;
             this.btnProducts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProducts.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnProducts.Image = global::InventoryManagementSoftware.WinUI.Properties.Resources._4109902__1_;
+            this.btnProducts.Image = global::InventoryManagementSoftware.WinUI.Properties.Resources.products;
             this.btnProducts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProducts.Location = new System.Drawing.Point(0, 160);
             this.btnProducts.Name = "btnProducts";
@@ -174,7 +192,7 @@ namespace InventoryManagementSoftware.WinUI
             this.btnBrands.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBrands.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnBrands.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnBrands.Image = ((System.Drawing.Image)(resources.GetObject("btnBrands.Image")));
+            this.btnBrands.Image = global::InventoryManagementSoftware.WinUI.Properties.Resources.brands1;
             this.btnBrands.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBrands.Location = new System.Drawing.Point(0, 100);
             this.btnBrands.Name = "btnBrands";
@@ -274,7 +292,7 @@ namespace InventoryManagementSoftware.WinUI
             this.btnCloseChildForm.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnCloseChildForm.FlatAppearance.BorderSize = 0;
             this.btnCloseChildForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCloseChildForm.Image = ((System.Drawing.Image)(resources.GetObject("btnCloseChildForm.Image")));
+            this.btnCloseChildForm.Image = global::InventoryManagementSoftware.WinUI.Properties.Resources.cancel1;
             this.btnCloseChildForm.Location = new System.Drawing.Point(0, 0);
             this.btnCloseChildForm.Name = "btnCloseChildForm";
             this.btnCloseChildForm.Size = new System.Drawing.Size(110, 100);
@@ -306,32 +324,13 @@ namespace InventoryManagementSoftware.WinUI
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Image = global::InventoryManagementSoftware.WinUI.Properties.Resources.ims;
             this.pictureBox1.Location = new System.Drawing.Point(300, 120);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(451, 284);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // btnReports
-            // 
-            this.btnReports.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnReports.FlatAppearance.BorderSize = 0;
-            this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReports.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnReports.Image = global::InventoryManagementSoftware.WinUI.Properties.Resources._912316__1_;
-            this.btnReports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReports.Location = new System.Drawing.Point(0, 460);
-            this.btnReports.Name = "btnReports";
-            this.btnReports.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.btnReports.Size = new System.Drawing.Size(344, 60);
-            this.btnReports.TabIndex = 7;
-            this.btnReports.Text = "   Reports";
-            this.btnReports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReports.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnReports.UseVisualStyleBackColor = true;
-            this.btnReports.Click += new System.EventHandler(this.btnReports_Click);
             // 
             // frmMainMenu
             // 
@@ -362,7 +361,7 @@ namespace InventoryManagementSoftware.WinUI
         private System.Windows.Forms.Panel pnlMenu;
         private System.Windows.Forms.Panel pnlLogo;
         private System.Windows.Forms.Button btnBrands;
-        private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Button btnReports;
         private System.Windows.Forms.Button btnEmployees;
         private System.Windows.Forms.Button btnDepartments;
         private System.Windows.Forms.Button btnInventories;
@@ -376,6 +375,6 @@ namespace InventoryManagementSoftware.WinUI
         private System.Windows.Forms.Button btnMaximize;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnMinimize;
-        private System.Windows.Forms.Button btnReports;
+        private System.Windows.Forms.Button btnLogin;
     }
 }

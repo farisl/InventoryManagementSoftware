@@ -166,11 +166,14 @@ namespace InventoryManagementSoftware.WinUI.Forms
 
         private async void btnDelete_Click(object sender, EventArgs e)
         {
-            int id = (dgvAttributes.SelectedRows[0].DataBoundItem as ProductAttribute).Id;
+            if (dgvAttributes.SelectedRows.Count > 0)
+            {
+                int id = (dgvAttributes.SelectedRows[0].DataBoundItem as ProductAttribute).Id;
 
-            await productAttribueService.Delete<List<ProductAttribute>>(id);
+                await productAttribueService.Delete<List<ProductAttribute>>(id);
 
-            await LoadAttributes();
+                await LoadAttributes();
+            }
         }
 
         private bool ValidateText(TextBox textBox)

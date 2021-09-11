@@ -111,7 +111,6 @@ namespace InventoryManagementSoftware.WinUI.Forms
             this.cmbProducts.Name = "cmbProducts";
             this.cmbProducts.Size = new System.Drawing.Size(169, 28);
             this.cmbProducts.TabIndex = 35;
-            this.cmbProducts.SelectedValueChanged += new System.EventHandler(this.cmbProducts_SelectedValueChanged);
             // 
             // nudQuantity
             // 

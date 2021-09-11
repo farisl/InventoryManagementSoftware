@@ -49,11 +49,13 @@ namespace InventoryManagementSoftware.Services
                 .FirstOrDefault()?.InventoryId;
 
             UserId = existingUser.Id;
+            var roles = await _userManager.GetRolesAsync(existingUser);
 
             return new AuthResult { Success = true, Token = jwtToken,
                 UserId = existingUser.Id,
                 EmployeeId = (int)(employeeId != null ? employeeId : 0),
-                InventoryId = (int)(inventoryId != null ? inventoryId : 0)
+                InventoryId = (int)(inventoryId != null ? inventoryId : 0),
+                Roles = roles
             };
         }
 

@@ -77,15 +77,6 @@ namespace InventoryManagementSoftware.WinUI.Forms
             await LoadData();
         }
 
-        private async void dgvBrands_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            var item = dgvBrands.SelectedRows[0].DataBoundItem;
-
-            frmBrandDetails frm = new frmBrandDetails(item as Brand);
-            frm.ShowDialog();
-            await LoadData();
-        }
-
         private async void frmBrand_Load(object sender, EventArgs e)
         {
             LoadTheme();

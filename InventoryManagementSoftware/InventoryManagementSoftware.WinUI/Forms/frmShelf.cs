@@ -14,25 +14,28 @@ namespace InventoryManagementSoftware.WinUI.Forms
 {
     public partial class frmShelf : Form
     {
-        APIService departmentService = new APIService("Department");
         APIService shelfService = new APIService("Shelf");
 
-        public frmShelf()
+        Department _department;
+
+        public frmShelf(Department department)
         {
             InitializeComponent();
+            _department = department;
         }
 
-        private async void frmShelf_Load(object sender, EventArgs e)
+        private void frmShelf_Load(object sender, EventArgs e)
         {
-            await LoadDepartments();
+            LoadDepartments();
         }
 
-        private async Task LoadDepartments()
+        private void LoadDepartments()
         {
-            var departments = await departmentService.Get<List<Department>>();
-            cmbDepartments.DataSource = departments;
+            List<Department> list = new List<Department> { _department };
+            cmbDepartments.DataSource = list;
             cmbDepartments.DisplayMember = "DepartmentName";
             cmbDepartments.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbDepartments.Enabled = false;
         }
 
         private async void btnAddDepartment_Click(object sender, EventArgs e)
@@ -41,7 +44,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
             {
                 var shelves = await shelfService.Get<List<Shelf>>(new ShelfSearchObject
                 {
-                    DepartmentId = (cmbDepartments.SelectedItem as Department).Id
+                    DepartmentId = _department.Id
                 });
                 if (shelves.Select(x => x.RowNumber).ToList().Contains((int)nudRow.Value))
                     MessageBox.Show($"Shelf with row '{nudRow.Value}' already exists!");
@@ -50,7 +53,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
                     ShelfInsertRequest request = new ShelfInsertRequest
                     {
                         Name = txtName.Text,
-                        DepartmentId = (cmbDepartments.SelectedItem as Department).Id,
+                        DepartmentId = _department.Id,
                         RowNumber = (int)nudRow.Value
                     };
                     await shelfService.Insert<Shelf>(request);

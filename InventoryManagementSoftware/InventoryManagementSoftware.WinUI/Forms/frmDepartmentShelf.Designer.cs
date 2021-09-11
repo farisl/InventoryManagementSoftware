@@ -157,7 +157,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
             this.cmbDepartments.FormattingEnabled = true;
             this.cmbDepartments.Location = new System.Drawing.Point(625, 121);
             this.cmbDepartments.Name = "cmbDepartments";
-            this.cmbDepartments.Size = new System.Drawing.Size(169, 28);
+            this.cmbDepartments.Size = new System.Drawing.Size(247, 28);
             this.cmbDepartments.TabIndex = 33;
             this.cmbDepartments.SelectedIndexChanged += new System.EventHandler(this.cmbDepartments_SelectedIndexChanged);
             // 

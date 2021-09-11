@@ -27,11 +27,7 @@ namespace InventoryManagementSoftware.WinUI
             this.ControlBox = false;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
 
-            btnBrands.Enabled = false;
-            btnEmployees.Enabled = false;
-            btnInventories.Enabled = false;
-            btnProducts.Enabled = false;
-            btnDepartments.Enabled = false;
+            DisableButtons();
         }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -130,6 +126,10 @@ namespace InventoryManagementSoftware.WinUI
             btnInventories.Enabled = true;
             btnProducts.Enabled = true;
             btnDepartments.Enabled = true;
+            btnReports.Enabled = true;
+
+            btnLogin.Text = "   Logout";
+            btnLogin.Image = Image.FromFile(@"../../..\\Resources\\logout.png");
         }
 
         public void DisableButtons()
@@ -139,6 +139,10 @@ namespace InventoryManagementSoftware.WinUI
             btnInventories.Enabled = false;
             btnProducts.Enabled = false;
             btnDepartments.Enabled = false;
+            btnReports.Enabled = false;
+
+            btnLogin.Text = "   Login";
+            btnLogin.Image = Image.FromFile(@"../../..\\Resources\\login.png");
         }
 
         private void pnlTitle_MouseDown(object sender, MouseEventArgs e)
@@ -187,7 +191,15 @@ namespace InventoryManagementSoftware.WinUI
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Forms.frmLogin(), sender);
+            if (btnLogin.Text == "   Login")
+                OpenChildForm(new Forms.frmLogin(), sender);
+            else
+            {
+                if (activeForm != null)
+                    activeForm.Close();
+                Reset();
+                DisableButtons();
+            }
         }
 
         private void btnReports_Click(object sender, EventArgs e)
@@ -196,5 +208,6 @@ namespace InventoryManagementSoftware.WinUI
             pdfGenertor.ImportToPdf();
             MessageBox.Show("Reports successfully created.");
         }
+
     }
 }

@@ -29,7 +29,6 @@ namespace InventoryManagementSoftware.WinUI.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnDetails = new System.Windows.Forms.Button();
             this.btnAddBrand = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.lblName = new System.Windows.Forms.Label();
@@ -45,22 +44,11 @@ namespace InventoryManagementSoftware.WinUI.Forms
             ((System.ComponentModel.ISupportInitialize)(this.dgvBrands)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnDetails
-            // 
-            this.btnDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDetails.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDetails.Location = new System.Drawing.Point(849, 468);
-            this.btnDetails.Name = "btnDetails";
-            this.btnDetails.Size = new System.Drawing.Size(104, 33);
-            this.btnDetails.TabIndex = 0;
-            this.btnDetails.Text = "Details";
-            this.btnDetails.UseVisualStyleBackColor = true;
-            // 
             // btnAddBrand
             // 
             this.btnAddBrand.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddBrand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddBrand.Location = new System.Drawing.Point(730, 468);
+            this.btnAddBrand.Location = new System.Drawing.Point(849, 468);
             this.btnAddBrand.Name = "btnAddBrand";
             this.btnAddBrand.Size = new System.Drawing.Size(104, 33);
             this.btnAddBrand.TabIndex = 1;
@@ -122,7 +110,6 @@ namespace InventoryManagementSoftware.WinUI.Forms
             this.dgvBrands.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBrands.Size = new System.Drawing.Size(540, 384);
             this.dgvBrands.TabIndex = 8;
-            this.dgvBrands.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBrands_CellDoubleClick);
             // 
             // clmId
             // 
@@ -192,7 +179,6 @@ namespace InventoryManagementSoftware.WinUI.Forms
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnAddBrand);
-            this.Controls.Add(this.btnDetails);
             this.Name = "frmBrand";
             this.Text = "Brands";
             this.Load += new System.EventHandler(this.frmBrand_Load);
@@ -203,8 +189,6 @@ namespace InventoryManagementSoftware.WinUI.Forms
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnDetails;
         private System.Windows.Forms.Button btnAddBrand;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label lblName;

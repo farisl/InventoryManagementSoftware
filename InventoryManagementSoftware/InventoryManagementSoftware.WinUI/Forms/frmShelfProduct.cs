@@ -29,6 +29,20 @@ namespace InventoryManagementSoftware.WinUI.Forms
         {
             await LoadProductShelves();
             await LoadProducts();
+
+            if (dgvProducts.SelectedRows.Count > 0)
+            {
+                _productShelf = dgvProducts.SelectedRows[0].DataBoundItem as ProductShelf;
+                foreach (var item in cmbProducts.Items)
+                {
+                    if ((item as Product).Id == _productShelf.ProductId)
+                    {
+                        cmbProducts.SelectedItem = item;
+                        break;
+                    }
+                }
+                nudQuantity.Value = _productShelf.Quantity;
+            }
         }
 
         private async Task LoadProductShelves()
@@ -46,7 +60,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
             //dgvProducts.Columns[3].Visible = false;
             //dgvProducts.Columns[4].Visible = false;
 
-            nudQuantity.Value = 1;
+            
         }
 
         private async Task LoadProducts()
@@ -80,32 +94,26 @@ namespace InventoryManagementSoftware.WinUI.Forms
             await LoadProductShelves();
         }
 
-        private void dgvProducts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            _productShelf = dgvProducts.SelectedRows[0].DataBoundItem as ProductShelf;
-            foreach(var item in cmbProducts.Items)
-            {
-                if((item as Product).Id == _productShelf.ProductId)
-                {
-                    cmbProducts.SelectedItem = item;
-                    break;
-                }
-            }
-            nudQuantity.Value = _productShelf.Quantity;
-        }
-
-        private void cmbProducts_SelectedValueChanged(object sender, EventArgs e)
-        {
-            nudQuantity.Value = 1;
-            _productShelf = null;
-        }
-
         private async void btnDelete_Click(object sender, EventArgs e)
         {
             var item = dgvProducts.SelectedRows[0].DataBoundItem as ProductShelf;
 
             await productShelfService.Delete<List<ProductShelf>>(item.Id);
             await LoadProductShelves();
+        }
+
+        private void dgvProducts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            _productShelf = dgvProducts.SelectedRows[0].DataBoundItem as ProductShelf;
+            foreach (var item in cmbProducts.Items)
+            {
+                if ((item as Product).Id == _productShelf.ProductId)
+                {
+                    cmbProducts.SelectedItem = item;
+                    break;
+                }
+            }
+            nudQuantity.Value = _productShelf.Quantity;
         }
     }
 }
