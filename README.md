@@ -1,5 +1,10 @@
 # InventoryManagementSoftware
 Desktop app, mobile app (web API)
 
-User: admin
-Password: test
+Desktop
+  Username: admin
+  Password: test
+  
+ Mobile
+  Username: user
+  Password: test
