@@ -557,10 +557,10 @@ namespace InventoryManagementSoftware.Database
             new IdentityUser<int>
             {
                 Id = 2,
-                UserName = "deenal",
-                NormalizedUserName = "DEENAL",
-                Email = "deenal@ims.com",
-                NormalizedEmail = "DEENAL@IMS.COM",
+                UserName = "user",
+                NormalizedUserName = "USER",
+                Email = "user@ims.com",
+                NormalizedEmail = "USER@IMS.COM",
                 EmailConfirmed = true,
                 PasswordHash = "AQAAAAEAACcQAAAAEJUkMFSXrboURChAEJiqUu1pLXzvH61yPUTqsdQk0P+6c4XkL24mAg4uTtrs2BdHsA==",
                 SecurityStamp = "d3a50ebf-5215-4039-9e5e-134405f033a6",
@@ -615,12 +615,12 @@ namespace InventoryManagementSoftware.Database
             modelBuilder.Entity<Employee>().HasData(new Employee
             {
                 Id = 1,
-                FirstName = "Deena",
-                LastName = "Lavender",
+                FirstName = "Test",
+                LastName = "User",
                 GenderId = 2,
                 Jmbg = "4532522654414",
                 BirthDate = new DateTime(1977, 8, 18),
-                Email = "deena.lavender@yahoo.com",
+                Email = "test.user@yahoo.com",
                 AddressId = 7,
                 PhoneNumber = "254-796-6013",
                 Active = true,

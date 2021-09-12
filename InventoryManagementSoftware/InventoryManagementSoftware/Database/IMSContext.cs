@@ -131,10 +131,6 @@ namespace InventoryManagementSoftware.Database
                 entity.HasOne(d => d.Gender)
                     .WithMany(p => p.Employees)
                     .HasForeignKey(d => d.GenderId);
-
-                //entity.HasOne(d => d.IdentityUser)
-                //    .WithMany(p => p.Employees)
-                //    .HasForeignKey(d => d.IdentityUserId);
             });
 
             modelBuilder.Entity<EmployeeInventory>(entity =>
@@ -244,13 +240,6 @@ namespace InventoryManagementSoftware.Database
                     .HasForeignKey(d => d.AddressId);
             });
 
-            //modelBuilder.Entity<Notification>(entity =>
-            //{
-            //    entity.HasOne(d => d.IdentityUser)
-            //        .WithMany(p => p.Notifications)
-            //        .HasForeignKey(d => d.IdentityUserId);
-            //});
-
 
             modelBuilder.Entity<Product>(entity =>
             {
@@ -321,20 +310,6 @@ namespace InventoryManagementSoftware.Database
                     .WithMany(p => p.Suppliers)
                     .HasForeignKey(d => d.AddressId);
             });
-
-            //modelBuilder.Entity<UserNotification>(entity =>
-            //{
-            //    entity.HasIndex(e => e.NotificationId, "IX_UserNotifications_NotificationId");
-
-            //    entity.HasOne(d => d.IdentityUser)
-            //        .WithMany(p => p.UserNotifications)
-            //        .HasForeignKey(d => d.IdentityUserId)
-            //        .OnDelete(DeleteBehavior.ClientSetNull);
-
-            //    entity.HasOne(d => d.Notification)
-            //        .WithMany(p => p.UserNotifications)
-            //        .HasForeignKey(d => d.NotificationId);
-            //});
 
             OnModelCreatingPartial(modelBuilder);
         }

@@ -12,9 +12,6 @@ namespace InventoryManagementSoftware.Security
         public int UserId { get; set; }
         public int? EmployeeId { get; set; }
         public int? InventoryId { get; set; }
-        public List<string> Errors { get; set; }
         public IList<string> Roles { get; set; }
-
-        public string RolesString => string.Join(", ", Roles);
     }
 }

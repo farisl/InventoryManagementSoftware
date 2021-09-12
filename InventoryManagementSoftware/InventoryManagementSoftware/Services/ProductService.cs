@@ -58,7 +58,6 @@ namespace InventoryManagementSoftware.Services
             foreach(var item in result)
             {
                 item.PriceValue = productPrices.Where(x => x.ProductId == item.Id).First().Price;
-                //item.Price = $"${productPrices.Where(x => x.ProductId == item.Id).First().Price}";
                 var product = _context.Products.Include(x => x.CategoryBrand).ThenInclude(x => x.Brand).First(x => x.Id == item.Id);
                 item.Brand = product.CategoryBrand.Brand.Name;
             }
