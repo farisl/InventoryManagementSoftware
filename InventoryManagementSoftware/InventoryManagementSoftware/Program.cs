@@ -16,7 +16,6 @@ namespace InventoryManagementSoftware
     {
         public static void Main(string[] args)
         {
-            //CreateHostBuilder(args).Build().Run();
             var host = CreateHostBuilder(args).Build();
             using(var scope = host.Services.CreateScope())
             {

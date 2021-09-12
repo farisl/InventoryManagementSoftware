@@ -80,11 +80,6 @@ namespace InventoryManagementSoftware.Services
             List<CategoriesBrand> categoriesBrands = _context.CategoriesBrands.Where(x => x.BrandId == id).ToList();
             _context.CategoriesBrands.RemoveRange(categoriesBrands);
             _context.SaveChanges();
-            //foreach(var item in categoriesBrands)
-            //{
-            //    _context.CategoriesBrands.Remove(item);
-            //    _context.SaveChanges();
-            //}
 
             foreach (var item in request.CategoryIds)
             {
