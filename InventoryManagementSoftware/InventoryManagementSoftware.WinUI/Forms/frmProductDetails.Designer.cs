@@ -138,6 +138,11 @@ namespace InventoryManagementSoftware.WinUI.Forms
             // 
             this.nudPrice.DecimalPlaces = 2;
             this.nudPrice.Location = new System.Drawing.Point(191, 267);
+            this.nudPrice.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.nudPrice.Minimum = new decimal(new int[] {
             1,
             0,

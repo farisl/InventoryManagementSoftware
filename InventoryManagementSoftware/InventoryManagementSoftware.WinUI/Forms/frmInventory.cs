@@ -40,10 +40,15 @@ namespace InventoryManagementSoftware.WinUI.Forms
                 }
             }
             label3.ForeColor = ThemeColor.SecondaryColor;
-            //label4.ForeColor = ThemeColor.SecondaryColor;
         }
 
-        private async Task LoadData(InventorySearchObject search = null)
+        private async Task LoadData()
+        {
+            await LoadInventories();
+            await LoadCities();
+        }
+
+        private async Task LoadInventories(InventorySearchObject search = null)
         {
             var list = await inventoryService.Get<List<Inventory>>(search);
 
@@ -52,8 +57,6 @@ namespace InventoryManagementSoftware.WinUI.Forms
             dgvInventories.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dgvInventories.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dgvInventories.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-            await LoadCities();
         }
 
         private async Task LoadCities()
@@ -83,7 +86,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
                 search.SizeTo = (float?)nudTo.Value;
             }
 
-            await LoadData(search);
+            await LoadInventories(search);
         }
 
         private async void btnAddProduct_Click(object sender, EventArgs e)
@@ -94,6 +97,15 @@ namespace InventoryManagementSoftware.WinUI.Forms
         }
 
         private async void dgvInventories_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var item = dgvInventories.SelectedRows[0].DataBoundItem;
+
+            frmInventoryDetails frm = new frmInventoryDetails(item as Inventory);
+            frm.ShowDialog();
+            await LoadData();
+        }
+
+        private async void btnDetails_Click(object sender, EventArgs e)
         {
             var item = dgvInventories.SelectedRows[0].DataBoundItem;
 

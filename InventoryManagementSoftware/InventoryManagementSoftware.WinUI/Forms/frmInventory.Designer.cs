@@ -137,6 +137,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
             this.btnDetails.TabIndex = 13;
             this.btnDetails.Text = "Details";
             this.btnDetails.UseVisualStyleBackColor = true;
+            this.btnDetails.Click += new System.EventHandler(this.btnDetails_Click);
             // 
             // txtName
             // 
