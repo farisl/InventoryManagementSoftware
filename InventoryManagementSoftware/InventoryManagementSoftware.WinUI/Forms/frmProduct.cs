@@ -29,7 +29,17 @@ namespace InventoryManagementSoftware.WinUI.Forms
             await LoadData();
         }
 
-        public async Task LoadData(ProductSearchObject request = null)
+        public async Task LoadData()
+        {
+            await LoadProducts();
+            await LoadCategories();
+            cmbBrands.Enabled = false;
+            cmbBrands.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            nudFrom.Minimum = 0;
+        }
+
+        private async Task LoadProducts(ProductSearchObject request = null)
         {
             var list = await productService.Get<List<Product>>(request);
 
@@ -39,12 +49,6 @@ namespace InventoryManagementSoftware.WinUI.Forms
             dgvProducts.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dgvProducts.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dgvProducts.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-            await LoadCategories();
-            cmbBrands.Enabled = false;
-            cmbBrands.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            nudFrom.Minimum = 0;
         }
 
         private void LoadTheme()
@@ -118,7 +122,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
                 search.PriceTo = (double?)nudTo.Value;
             }
 
-            await LoadData(search);
+            await LoadProducts(search);
         }
 
         private async void dgvProducts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

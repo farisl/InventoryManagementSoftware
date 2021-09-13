@@ -75,5 +75,14 @@ namespace InventoryManagementSoftware.WinUI.Forms
             frm.ShowDialog();
             await LoadEmployees();
         }
+
+        private async void btnDetails_Click(object sender, EventArgs e)
+        {
+            var item = dgvEmployees.SelectedRows[0].DataBoundItem as Employee;
+
+            frmEmployeeDetails frm = new frmEmployeeDetails(item);
+            frm.ShowDialog();
+            await LoadEmployees();
+        }
     }
 }
