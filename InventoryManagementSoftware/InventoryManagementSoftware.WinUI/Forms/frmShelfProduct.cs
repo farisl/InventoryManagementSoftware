@@ -96,10 +96,13 @@ namespace InventoryManagementSoftware.WinUI.Forms
 
         private async void btnDelete_Click(object sender, EventArgs e)
         {
-            var item = dgvProducts.SelectedRows[0].DataBoundItem as ProductShelf;
+            if (dgvProducts.SelectedRows.Count > 0)
+            {
+                var item = dgvProducts.SelectedRows[0].DataBoundItem as ProductShelf;
 
-            await productShelfService.Delete<List<ProductShelf>>(item.Id);
-            await LoadProductShelves();
+                await productShelfService.Delete<List<ProductShelf>>(item.Id);
+                await LoadProductShelves();
+            }
         }
 
         private void dgvProducts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

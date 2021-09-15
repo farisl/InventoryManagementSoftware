@@ -39,7 +39,9 @@ namespace InventoryManagementSoftware.Services
                 list = list.Where(x => x.LastName.StartsWith(search.LastName));
             if(search?.InventoryId != null)
             {
-                list = list.Where(x => x.EmployeeInventories.Select(y => y.InventoryId).Contains((int)search.InventoryId));         
+                list = list.Where(x => x.EmployeeInventories
+                    .Where(x => x.EndDate == null)
+                    .Select(y => y.InventoryId).Contains((int)search.InventoryId));         
             }
 
             return _mapper.Map<List<Model.Employee>>(list.ToList());

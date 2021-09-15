@@ -219,6 +219,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
             this.cbActive.Size = new System.Drawing.Size(18, 17);
             this.cbActive.TabIndex = 58;
             this.cbActive.UseVisualStyleBackColor = true;
+            this.cbActive.CheckedChanged += new System.EventHandler(this.cbActive_CheckedChanged);
             // 
             // btnSave
             // 

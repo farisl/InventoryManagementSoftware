@@ -30,9 +30,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
         {
             await LoadGenders();
             await LoadCities();
-            await LoadInventories();
-            cbActive.Checked = true;
-            if(_employee != null)
+            if (_employee != null)
             {
                 txtFirstName.Text = _employee.FirstName;
                 txtLastName.Text = _employee.LastName;
@@ -41,24 +39,28 @@ namespace InventoryManagementSoftware.WinUI.Forms
                 txtJmbg.Text = _employee.Jmbg;
                 txtPhone.Text = _employee.PhoneNumber;
                 dtpBirthDate.Value = _employee.BirthDate;
-                dtpHireDate.Value = (DateTime)_employee.HireDate;
                 cmbCities.SelectedItem = _employee.Address.City;
                 cmbGenders.SelectedItem = _employee.Gender;
                 cbActive.Checked = _employee.Active;
-                if(_employee.Salary != null)
+                if (_employee.Salary != null)
                     nudSalary.Value = (decimal)_employee.Salary;
-                if (_employee.ActiveInventory == null)
-                    cmbInventories.SelectedIndex = 0;
+                if (!_employee.Active)
+                {
+                    cmbInventories.Enabled = false;
+                    dtpHireDate.Enabled = false;
+                }
                 else
                 {
-                    foreach(var item in cmbInventories.Items)
+                    await LoadInventories();
+                    foreach (var item in cmbInventories.Items)
                     {
                         if ((item as Inventory).Id == _employee.ActiveInventory.Id)
                         {
                             cmbInventories.SelectedItem = item;
                             break;
-                        }                        
+                        }
                     }
+                    dtpHireDate.Value = (DateTime)_employee.HireDate;
                 }
                 foreach (var item in cmbCities.Items)
                 {
@@ -68,6 +70,19 @@ namespace InventoryManagementSoftware.WinUI.Forms
                         break;
                     }
                 }
+                foreach (var item in cmbGenders.Items)
+                {
+                    if ((item as Gender).Id == _employee.GenderId)
+                    {
+                        cmbGenders.SelectedItem = item;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                cmbInventories.Enabled = false;
+                dtpHireDate.Enabled = false;
             }
         }
 
@@ -88,13 +103,6 @@ namespace InventoryManagementSoftware.WinUI.Forms
         private async Task LoadInventories()
         {
             var inventories = await inventoryService.Get<List<Inventory>>();
-            inventories.Insert(0, new Inventory
-            {
-                Id = 0,
-                AddressId = 0,
-                Name = "----Select----",
-                Size = 0
-            });
             cmbInventories.DataSource = inventories;
             cmbInventories.DisplayMember = "Name";
             cmbInventories.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -121,7 +129,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
                         Salary = (double?)nudSalary.Value,
                         Email = txtEmail.Text
                     };
-                    if ((cmbInventories.SelectedItem as Inventory).Id > 0)
+                    if (cbActive.Checked)
                     {
                         request.InventoryId = (cmbInventories.SelectedItem as Inventory).Id;
                         request.HireDate = dtpHireDate.Value;
@@ -146,7 +154,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
                         Salary = (double?)nudSalary.Value,
                         Email = txtEmail.Text
                     };
-                    if ((cmbInventories.SelectedItem as Inventory).Id > 0)
+                    if (cbActive.Checked)
                     {
                         request.InventoryId = (cmbInventories.SelectedItem as Inventory).Id;
                         request.HireDate = dtpHireDate.Value;
@@ -223,5 +231,20 @@ namespace InventoryManagementSoftware.WinUI.Forms
             return status;
         }
 
+        private async void cbActive_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbActive.Checked)
+            {
+                cmbInventories.Enabled = true;
+                dtpHireDate.Enabled = true;
+                await LoadInventories();
+                dtpHireDate.Value = DateTime.Now;
+            }
+            else
+            {
+                cmbInventories.Enabled = false;
+                dtpHireDate.Enabled = false;
+            }
+        }
     }
 }
