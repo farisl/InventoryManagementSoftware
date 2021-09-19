@@ -176,7 +176,7 @@
     <value>..\Resources\employees.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ApiUrl" xml:space="preserve">
-    <value>https://localhost:5001/</value>
+    <value>http://localhost:63907/</value>
   </data>
   <data name="ims" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Reports\ims.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

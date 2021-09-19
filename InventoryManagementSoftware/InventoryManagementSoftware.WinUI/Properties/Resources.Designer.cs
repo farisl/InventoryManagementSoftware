@@ -112,7 +112,7 @@ namespace InventoryManagementSoftware.WinUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://localhost:5001/.
+        ///   Looks up a localized string similar to http://localhost:63907/.
         /// </summary>
         internal static string ApiUrl {
             get {
