@@ -257,7 +257,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
             this.Controls.Add(this.cmbInventories);
             this.Controls.Add(this.label1);
             this.Name = "frmDepartmentShelf";
-            this.Text = "frmDepartmentShelf";
+            this.Text = "Departments/shelves";
             this.Load += new System.EventHandler(this.frmDepartmentShelf_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepartments)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvShelves)).EndInit();

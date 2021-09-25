@@ -22,6 +22,8 @@ namespace InventoryManagementSoftware.WinUI.Forms
         {
             InitializeComponent();
             _brand = brand;
+            if (_brand == null)
+                this.Text = "Add brand";
         }
 
         private async Task LoadCategories()

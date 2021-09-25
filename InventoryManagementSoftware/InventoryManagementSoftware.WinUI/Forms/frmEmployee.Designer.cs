@@ -214,7 +214,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.lblFirstName);
             this.Name = "frmEmployee";
-            this.Text = "frmEmployee";
+            this.Text = "Employees";
             this.Load += new System.EventHandler(this.frmEmployee_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
             this.ResumeLayout(false);

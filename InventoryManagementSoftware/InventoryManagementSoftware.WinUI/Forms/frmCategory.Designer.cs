@@ -77,7 +77,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblName);
             this.Name = "frmCategory";
-            this.Text = "frmCategory";
+            this.Text = "Add category";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

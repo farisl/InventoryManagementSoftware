@@ -25,7 +25,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
             _product = product;
             dgvAttributes.AutoGenerateColumns = false;
 
-            if(_product == null)
+            if (_product == null)
             {
                 lblAttributes.Visible = false;
                 dgvAttributes.Visible = false;
@@ -37,8 +37,11 @@ namespace InventoryManagementSoftware.WinUI.Forms
                 btnDelete.Visible = false;
                 this.Width = 430;
                 this.Height = 453;
+
+                this.Text = "Add product";
             }
-            
+            else
+                this.Text = _product.Name;
         }
 
         private async void frmProductDetails_Load(object sender, EventArgs e)

@@ -257,7 +257,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
             this.Controls.Add(this.btnAddProduct);
             this.Controls.Add(this.btnDetails);
             this.Name = "frmInventory";
-            this.Text = "frmInventory";
+            this.Text = "Inventories";
             this.Load += new System.EventHandler(this.frmInventory_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventories)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTo)).EndInit();

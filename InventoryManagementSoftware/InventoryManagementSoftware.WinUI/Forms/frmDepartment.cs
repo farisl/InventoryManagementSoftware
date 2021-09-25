@@ -23,6 +23,11 @@ namespace InventoryManagementSoftware.WinUI.Forms
             InitializeComponent();
             _department = department;
             _inventoryId = inventoryId;
+
+            if (_department == null)
+                this.Text = "Add department";
+            else
+                this.Text = _department.Name;
         }
 
         private async void frmDepartment_Load(object sender, EventArgs e)

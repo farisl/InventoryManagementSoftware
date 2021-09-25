@@ -24,6 +24,11 @@ namespace InventoryManagementSoftware.WinUI.Forms
         {
             InitializeComponent();
             _employee = employee;
+
+            if (_employee == null)
+                this.Text = "Add employee";
+            else
+                this.Text = _employee.FirstName + " " + _employee.LastName;
         }
 
         private async void frmEmployeeDetails_Load(object sender, EventArgs e)

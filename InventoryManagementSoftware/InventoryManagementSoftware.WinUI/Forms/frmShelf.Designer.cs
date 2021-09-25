@@ -130,7 +130,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
             this.Controls.Add(this.cmbDepartments);
             this.MinimumSize = new System.Drawing.Size(427, 360);
             this.Name = "frmShelf";
-            this.Text = "frmShelf";
+            this.Text = "Add shelf";
             this.Load += new System.EventHandler(this.frmShelf_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudRow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();

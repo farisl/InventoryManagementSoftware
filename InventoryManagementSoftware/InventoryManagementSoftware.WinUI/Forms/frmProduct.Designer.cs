@@ -279,7 +279,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblName);
             this.Name = "frmProduct";
-            this.Text = "frmProduct";
+            this.Text = "Products";
             this.Load += new System.EventHandler(this.frmProduct_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudFrom)).EndInit();

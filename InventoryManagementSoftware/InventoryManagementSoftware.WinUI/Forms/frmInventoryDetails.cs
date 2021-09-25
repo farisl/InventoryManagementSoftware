@@ -22,6 +22,11 @@ namespace InventoryManagementSoftware.WinUI.Forms
         {
             InitializeComponent();
             _inventory = inventory;
+
+            if (_inventory == null)
+                this.Text = "Add inventory";
+            else
+                this.Text = _inventory.Name;
         }
 
         private async void frmInventoryDetails_Load(object sender, EventArgs e)

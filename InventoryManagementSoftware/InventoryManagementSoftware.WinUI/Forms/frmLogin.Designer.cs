@@ -98,7 +98,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.lblUsername);
             this.Name = "frmLogin";
-            this.Text = "frmLogin";
+            this.Text = "Login";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

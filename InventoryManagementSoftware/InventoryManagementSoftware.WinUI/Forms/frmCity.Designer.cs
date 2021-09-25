@@ -98,7 +98,7 @@ namespace InventoryManagementSoftware.WinUI.Forms
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblName);
             this.Name = "frmCity";
-            this.Text = "frmCity";
+            this.Text = "Add city";
             this.Load += new System.EventHandler(this.frmCity_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
